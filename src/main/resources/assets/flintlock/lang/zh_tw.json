@@ -1,0 +1,16 @@
+{
+  "item.flintlock.eagle_of_suger": "蘇傑之鷹",
+  "item.flintlock.coin_with_file":"帶銼刀的硬幣",
+  "item.flintlock.dirty_butter_bread":"被污染的黃油麵包",
+  "item.flintlock.pistol": "手槍",
+  "item.flintlock.bullet": "彈藥",
+  "item.flintlock.flint_musket": "燧石火槍",
+  "item.flintlock.officers_pistol": "軍官手槍",
+  "item.flintlock.silver_plated_pistol": "鍍銀手槍",
+  "item.flintlock.french_cavalry_pistol": "法國騎兵手槍",
+  "item.flintlock.american_flintlock": "美製燧發槍",
+  "key.category.flintlock": "火槍鍵盤",
+  "key.aim": "瞄準",
+  "key.reload": "裝填",
+  "itemGroup.flintlock": "火槍"
+}

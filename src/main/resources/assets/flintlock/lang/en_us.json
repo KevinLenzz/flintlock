@@ -1,0 +1,16 @@
+{
+  "item.flintlock.eagle_of_suger": "Eagle Of Suger",
+  "item.flintlock.coin_with_file":"Coin with File",
+  "item.flintlock.dirty_butter_bread":"Dirty Butter Bread",
+  "item.flintlock.pistol": "Pistol",
+  "item.flintlock.bullet": "Ammunition",
+  "item.flintlock.flint_musket": "Flint Musket",
+  "item.flintlock.officers_pistol": "Officer's Pistol",
+  "item.flintlock.silver_plated_pistol": "Silver-Plated Pistol",
+  "item.flintlock.french_cavalry_pistol": "French Cavalry Pistol",
+  "item.flintlock.american_flintlock": "American Flintlock",
+  "key.category.flintlock": "Flintlock",
+  "key.aim": "Aim",
+  "key.reload": "Reload",
+  "itemGroup.flintlock": "Flintlock"
+}

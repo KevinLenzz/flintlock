@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "flintlock:item/dirty_butter_bread"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "item.flintlock.eagle_of_suger": "L'aigle de Suger",
+  "item.flintlock.coin_with_file":"Pièces de monnaie avec file",
+  "item.flintlock.dirty_butter_bread":"Pain de beurre sale",
+  "item.flintlock.pistol": "Pistolet",
+  "item.flintlock.bullet": "Munitions",
+  "item.flintlock.flint_musket": "Mousquet à silex",
+  "item.flintlock.officers_pistol": "Pistolet d'officier",
+  "item.flintlock.silver_plated_pistol": "Pistolet à placage argent",
+  "item.flintlock.french_cavalry_pistol": "Pistolet de cavalerie français",
+  "item.flintlock.american_flintlock": "Arme à silex américaine",
+  "key.category.flintlock": "Flintlock",
+  "key.aim": "Visez",
+  "key.reload": "Recharger",
+  "itemGroup.flintlock": "Flintlock"
+}

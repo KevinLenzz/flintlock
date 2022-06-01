@@ -1,0 +1,22 @@
+{
+  "shoot": {
+    "subtitle": "shoot",
+    "replace": "true",
+    "sounds": [
+      {
+        "name": "flintlock:shoot",
+        "steam": true
+      }
+    ]
+  },
+  "trigger": {
+    "subtitle": "trigger",
+    "replace": "true",
+    "sounds": [
+      {
+        "name": "flintlock:trigger",
+        "steam": true
+      }
+    ]
+  }
+}
