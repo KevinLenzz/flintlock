@@ -33,11 +33,11 @@ credits="Salute" #optional
 # A text field displayed in the mod UI
 authors="camelun" #optional
 # The description text for the mod (multi line!) (#mandatory)
-description='''
+description="""
 The idea comes out of Hugo's novel Les Misérables and Quatrewingt-Treize and the game Assassin's Creed:Unity.
 
 "The fact is not that easy to be repulsed.It doesn't shake."
-'''
+"""
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.flintlock]] #optional
     # the modid of the dependency
