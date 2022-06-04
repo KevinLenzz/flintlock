@@ -3,6 +3,7 @@ package com.example.flintlock.setup;
 import com.example.flintlock.Flintlock;
 import com.example.flintlock.setup.ItemPro.*;
 import com.example.flintlock.setup.entity.EntityBullet;
+import com.example.flintlock.setup.network.Messages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleType;
@@ -16,6 +17,8 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.SoundDefinition;
@@ -39,20 +42,22 @@ public class Registration {
     private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Flintlock.MODID);
     private static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, Flintlock.MODID);
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Flintlock.MODID);
-    public static final RegistryObject<SoundEvent> TRIGGER = SOUNDS.register("trigger", () -> new SoundEvent(new ResourceLocation(Flintlock.MODID, "trigger")));
+    public static final RegistryObject<SoundEvent> TRIGGERSOUND = SOUNDS.register("trigger", () -> new SoundEvent(new ResourceLocation(Flintlock.MODID, "trigger")));
     public static final RegistryObject<SoundEvent> SHOOT = SOUNDS.register("shoot", () ->new SoundEvent(new ResourceLocation(Flintlock.MODID, "shoot")));
     public static final RegistryObject<SimpleParticleType> SMOKE_PARTICLE=PARTICLE_TYPES.register("smoke_particle",()->new SimpleParticleType(true));
 
+    public static final RegistryObject<Item> PISTOLITEM = ITEMS.register("pistol",()->new FlintlockItem(6,100,1));
+    public static final RegistryObject<Item> FLINT_MUSKETITEM = ITEMS.register("flint_musket",()->new FlintlockItem(6,200,1));
+    public static final RegistryObject<Item> OFFICERS_PISTOL = ITEMS.register("officers_pistol",()->new FlintlockItem(6,100,2));
+    public static final RegistryObject<Item> SILVER_PLATED_PISTOL = ITEMS.register("silver_plated_pistol",()->new FlintlockItem(6,100,1));
+    public static final RegistryObject<Item> AMERICAN_FLINTLOCK = ITEMS.register("american_flintlock",()->new FlintlockItem(6,100,4));
+    public static final RegistryObject<Item> FRENCH_CAVALRY_PISTOL = ITEMS.register("french_cavalry_pistol",()->new FlintlockItem(6,100,1));
     public static final RegistryObject<Item> EAGLE_OF_SUGER = ITEMS.register("eagle_of_suger", ()->new EagleOfSuger());
     public static final RegistryObject<Item> COIN_WITH_FILE = ITEMS.register("coin_with_file",()->new CoinWithFile());
     public static final RegistryObject<Item> DIETY_BUTTER_BREAD = ITEMS.register("dirty_butter_bread",()->new DirtyButterBread());
-    public static final RegistryObject<Item> PISTOLITEM = ITEMS.register("pistol",()->new FlintlockItem(6,100,1));
-    public static final RegistryObject<Item> FLINT_MUSKETITEM = ITEMS.register("flint_musket",()->new FlintlockItem(6,200,1));
-    public static final RegistryObject<Item> OFFICERS_PISTOL = ITEMS.register("officers_pistol",()->new FlintlockItem(6,100,4));
-    public static final RegistryObject<Item> SILVER_PLATED_PISTOL = ITEMS.register("silver_plated_pistol",()->new FlintlockItem(6,100,1));
-    public static final RegistryObject<Item> AMERICAN_FLINTLOCK = ITEMS.register("american_flintlock",()->new FlintlockItem(6,100,8));
-    public static final RegistryObject<Item> FRENCH_CAVALRY_PISTOL = ITEMS.register("french_cavalry_pistol",()->new FlintlockItem(6,100,1));
     public static final RegistryObject<Item> ITEM_BULLET = ITEMS.register("bullet",()->new ItemBullet());
+    public static final RegistryObject<Item> BARREL = ITEMS.register("barrel",()->new OnenessItem());
+    public static final RegistryObject<Item> TRIGGER = ITEMS.register("trigger",()->new OnenessItem());
     public static final RegistryObject<EntityType<EntityBullet>> BULLET = ENTITY_TYPES.register("bullet",()->{
         return EntityType.Builder.of((EntityType<EntityBullet> entityType,Level level)->{
             return new EntityBullet(entityType,level);

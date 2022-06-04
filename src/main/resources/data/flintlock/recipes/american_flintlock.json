@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABE",
+    "BCB",
+    "DBA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "B": {
+      "item": "flintlock:barrel"
+    },
+    "C": {
+      "item": "minecraft:oak_planks"
+    },
+    "D": {
+      "item": "flintlock:trigger"
+    },
+    "E": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "flintlock:american_flintlock",
+    "count": 1
+  }
+}

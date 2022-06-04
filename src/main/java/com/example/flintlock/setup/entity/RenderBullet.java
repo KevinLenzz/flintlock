@@ -23,19 +23,13 @@ import net.minecraftforge.fml.common.Mod;
 
 public class RenderBullet extends EntityRenderer<EntityBullet> {
 
-    //指定我们的投掷物的皮肤，一般是我们blockbench中的那张贴图(第一步中的贴图)
-
     public static final ResourceLocation TEXTURE = new ResourceLocation(Flintlock.MODID, "textures/entity/bullet.png");
 
     private static final float MIN_CAMERA_DISTANCE_SQUARED = 12.25F;
 
     private final ItemRenderer itemRenderer;
 
-    //投掷物大小
-
     private final float scale;
-
-    //投掷物是不是发光
 
     private final boolean fullBright;
 

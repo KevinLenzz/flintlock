@@ -9,6 +9,8 @@
   "item.flintlock.silver_plated_pistol": "Silver-Plated Pistol",
   "item.flintlock.french_cavalry_pistol": "French Cavalry Pistol",
   "item.flintlock.american_flintlock": "American Flintlock",
+  "item.flintlock.barrel": "Barrel",
+  "item.flintlock.trigger": "Trigger",
   "key.category.flintlock": "Flintlock",
   "key.aim": "Aim",
   "key.reload": "Reload",

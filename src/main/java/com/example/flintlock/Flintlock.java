@@ -41,7 +41,7 @@ public class Flintlock
         // Register 'ModSetup::init' to be called at mod setup time (server and client)
         modbus.addListener(ModSetup::init);
         // Register 'ClientSetup::init' to be called at mod setup time (client only)
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> modbus.addListener(ClientSetup::init));
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> modbus.addListener(ClientSetup::onClintSetup));
     }
 
     private void setup(final FMLCommonSetupEvent event)

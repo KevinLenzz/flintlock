@@ -4,6 +4,7 @@ import com.example.flintlock.setup.event.ForgeEventBusEvent;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ClientRegistry;
@@ -22,9 +23,11 @@ import javax.swing.text.JTextComponent;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientSetup {
-
-    public static void init(final FMLClientSetupEvent event) {
-        ClientRegistry.registerKeyBinding(ForgeEventBusEvent.KEYR);
-        ClientRegistry.registerKeyBinding(ForgeEventBusEvent.KEYG);
+    public static final KeyMapping KEYR = new KeyMapping("key.aim", GLFW.GLFW_KEY_R,"key.category.flintlock");
+    public static final KeyMapping KEYG = new KeyMapping("key.reload",GLFW.GLFW_KEY_G,"key.category.flintlock");
+    @SubscribeEvent
+    public static void onClintSetup(final FMLClientSetupEvent event) {
+        ClientRegistry.registerKeyBinding(KEYR);
+        ClientRegistry.registerKeyBinding(KEYG);
     }
 }

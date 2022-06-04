@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABB",
+    "CD "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "B": {
+      "item": "flintlock:barrel"
+    },
+    "C": {
+      "item": "minecraft:oak_planks"
+    },
+    "D": {
+      "item": "flintlock:trigger"
+    }
+  },
+  "result": {
+    "item": "flintlock:french_cavalry_pistol",
+    "count": 1
+  }
+}

@@ -2,6 +2,7 @@ package com.example.flintlock.setup.entity;
 
 import com.example.flintlock.setup.Registration;
 import io.netty.buffer.Unpooled;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -11,6 +12,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
@@ -21,7 +23,6 @@ public class EntityBullet extends ThrowableItemProjectile {
     public double damage=6;
     private int ticksInGround;
     private static final EntityDataAccessor<Integer> ID_EFFECT_COLOR = SynchedEntityData.defineId(EntityBullet.class, EntityDataSerializers.INT);
-
     public EntityBullet(Level world, LivingEntity entity) {
         super(Registration.BULLET.get(), entity, world);
     }
@@ -40,9 +41,6 @@ public class EntityBullet extends ThrowableItemProjectile {
         Entity entity = result.getEntity();
         entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) (random.nextFloat()+this.damage));
     }
-
-
-    //撞到墙上就把这个子弹给从主世界移除
 
     protected void onHit(EntityHitResult p_70227_1_) {
         super.onHit(p_70227_1_);
