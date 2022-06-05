@@ -1,13 +1,7 @@
 package com.example.flintlock.setup.network;
 
-import com.example.flintlock.setup.ItemPro.ItemBullet;
-import com.example.flintlock.setup.Registration;
-import com.example.flintlock.setup.entity.EntityBullet;
 import com.example.flintlock.setup.event.Flags;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;

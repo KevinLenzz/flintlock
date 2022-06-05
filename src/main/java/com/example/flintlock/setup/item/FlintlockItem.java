@@ -1,45 +1,33 @@
-package com.example.flintlock.setup.ItemPro;
+package com.example.flintlock.setup.item;
 
 import com.example.flintlock.setup.ModSetup;
-import com.example.flintlock.setup.ReflectUtil;
 import com.example.flintlock.setup.Registration;
 import com.example.flintlock.setup.entity.EntityBullet;
 import com.example.flintlock.setup.event.Flags;
-import com.example.flintlock.setup.event.ForgeEventBusEvent;
 import com.example.flintlock.setup.network.Messages;
-import com.example.flintlock.setup.network.PGM;
 import com.example.flintlock.setup.network.PGM2;
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.AnimationUtils;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.player.RemotePlayer;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
-import org.apache.logging.log4j.core.jmx.Server;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 
-import java.lang.reflect.Field;
 import java.util.function.Predicate;
 
 import static com.example.flintlock.setup.Registration.*;
 import static com.example.flintlock.setup.event.Flags.reloadflag;
 import static com.example.flintlock.setup.event.Flags.shoot;
-import static com.example.flintlock.setup.gui.GUIHandler.flag2;
 
 public class FlintlockItem extends CrossbowItem{
     public UseAnim getUseAnimation(ItemStack p_40935_) {
@@ -50,8 +38,6 @@ public class FlintlockItem extends CrossbowItem{
     public static int duraTag;
     public int number;
     public int numberOringin;
-    public Tag tag;
-    public boolean first=true;
     public FlintlockItem(double damageTag,int duraTag,int number) {
         super(new FlintlockItem.Properties().tab(ModSetup.ITEM_GROUP).stacksTo(1));
         this.damageTag=damageTag;
@@ -102,36 +88,36 @@ public class FlintlockItem extends CrossbowItem{
                         }
                         setCharged(p_77615_1_, true);
                         boolean flag1 = player.getAbilities().instabuild || (itemstack.getItem() instanceof ItemBullet && ((ItemBullet) itemstack.getItem()).isInfinite(itemstack, p_77615_1_, player));
-                        System.out.println(11111);
-                        level.addParticle(ParticleTypes.FLAME,
-                                livingEntity.getX() + Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) *0.5d,
-                                livingEntity.getY() - Math.sin(livingEntity.getViewXRot(0) * Math.PI / 180) * 0.5d + 1.6d,
-                                livingEntity.getZ() + Math.sin(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) * 0.5d,
-                                0,
-                                0,
-                                0);
-                        for (double j = 0; j < 5; j += 0.5d) {
-//                            for (int i = 0; i < 360; i++) {
-//                                if (i % 20 == 0) {
-//                                    level.addParticle(ParticleTypes.POOF,
+//                        System.out.println(11111);
+//                        level.addParticle(ParticleTypes.FLAME,
+//                                livingEntity.getX() + Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) *0.5d,
+//                                livingEntity.getY() - Math.sin(livingEntity.getViewXRot(0) * Math.PI / 180) * 0.5d + 1.6d,
+//                                livingEntity.getZ() + Math.sin(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) * 0.5d,
+//                                0,
+//                                0,
+//                                0);
+//                        for (double j = 0; j < 5; j += 0.5d) {
+////                            for (int i = 0; i < 360; i++) {
+////                                if (i % 20 == 0) {
+////                                    level.addParticle(ParticleTypes.POOF,
+////                                            livingEntity.getX() + Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) * j,
+////                                            livingEntity.getY() - Math.sin(livingEntity.getViewXRot(0) * Math.PI / 180) * j + 1.6d,
+////                                            livingEntity.getZ() + Math.sin(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) * j,
+////                                            0.15d * Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180) * Math.random() / 2,
+////                                            0.15d * Math.random() / 2,
+////                                            0.15d * Math.sin(livingEntity.getViewYRot(0) * Math.PI / 180) * Math.random() / 2);
+////                                }
+////                            }
+//                            level.addParticle(ParticleTypes.POOF,
 //                                            livingEntity.getX() + Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) * j,
 //                                            livingEntity.getY() - Math.sin(livingEntity.getViewXRot(0) * Math.PI / 180) * j + 1.6d,
 //                                            livingEntity.getZ() + Math.sin(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) * j,
 //                                            0.15d * Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180) * Math.random() / 2,
 //                                            0.15d * Math.random() / 2,
 //                                            0.15d * Math.sin(livingEntity.getViewYRot(0) * Math.PI / 180) * Math.random() / 2);
-//                                }
-//                            }
-                            level.addParticle(ParticleTypes.POOF,
-                                            livingEntity.getX() + Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) * j,
-                                            livingEntity.getY() - Math.sin(livingEntity.getViewXRot(0) * Math.PI / 180) * j + 1.6d,
-                                            livingEntity.getZ() + Math.sin(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) * j,
-                                            0.15d * Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180) * Math.random() / 2,
-                                            0.15d * Math.random() / 2,
-                                            0.15d * Math.sin(livingEntity.getViewYRot(0) * Math.PI / 180) * Math.random() / 2);
-                        }
-                        System.out.println(22222);
-                        level.playLocalSound(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), SHOOT.get(), SoundSource.PLAYERS, 1.4F, 1.4F / (livingEntity.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F,false);
+//                        }
+//                        System.out.println(22222);
+//                        level.playLocalSound(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), SHOOT.get(), SoundSource.PLAYERS, 1.4F, 1.4F / (livingEntity.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F,false);
                         if(level.isClientSide()) {
                             if (number == 1) {
                                 reloadflag = false;
@@ -149,8 +135,29 @@ public class FlintlockItem extends CrossbowItem{
                         player.awardStat(Stats.ITEM_USED.get(this));
                     }
                 }
-                if((!level.isClientSide())&&shoot){
-                    level.playSound((Player) null,livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), SHOOT.get(), SoundSource.PLAYERS, 1.4F, 1.4F / (livingEntity.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                if((level instanceof ServerLevel serverWorld)&&shoot){
+                    serverWorld.sendParticles(ParticleTypes.FLAME,
+                            livingEntity.getX() + Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) *0.5d,
+                            livingEntity.getY() - Math.sin(livingEntity.getViewXRot(0) * Math.PI / 180) * 0.5d + 1.6d,
+                            livingEntity.getZ() + Math.sin(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) * 0.5d,
+                            1,
+                            0,
+                            0,
+                            0,
+                            0);
+                    for (double j = 0; j < 5; j += 0.5d) {
+                        serverWorld.sendParticles(ParticleTypes.POOF,
+                                livingEntity.getX() + Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) * j,
+                                livingEntity.getY() - Math.sin(livingEntity.getViewXRot(0) * Math.PI / 180) * j + 1.6d,
+                                livingEntity.getZ() + Math.sin(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) * j,
+                                1,
+                                0.15d * Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180) * Math.random() / 2,
+                                0.15d * Math.random() / 2,
+                                0.15d * Math.sin(livingEntity.getViewYRot(0) * Math.PI / 180) * Math.random() / 2,
+                                0);
+                    }
+                    SoundSource soundsource = livingEntity instanceof Player ? SoundSource.PLAYERS : SoundSource.HOSTILE;
+                    level.playSound((Player) null,livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), SHOOT.get(), soundsource, 1.4F, 1.4F / (livingEntity.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
                     ItemBullet arrowitem = (ItemBullet) (itemstack.getItem() instanceof ItemBullet ? itemstack.getItem() : Registration.ITEM_BULLET.get());
                     EntityBullet abstractarrowentity;
                     abstractarrowentity = arrowitem.createArrow(level, itemstack, livingEntity,damageTag);

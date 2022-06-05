@@ -1,24 +1,14 @@
-package com.example.flintlock.setup.ItemPro;
+package com.example.flintlock.setup.item;
 
-import com.example.flintlock.Flintlock;
 import com.example.flintlock.setup.ModSetup;
 import com.example.flintlock.setup.Registration;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 public class EagleOfSuger extends SwordItem {

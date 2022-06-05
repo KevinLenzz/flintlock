@@ -1,29 +1,15 @@
 package com.example.flintlock.setup.gui;
 
-import com.example.flintlock.setup.ItemPro.FlintlockItem;
-import com.example.flintlock.setup.ReflectUtil;
-import com.example.flintlock.setup.Registration;
-import com.example.flintlock.setup.event.ForgeEventBusEvent;
-import net.minecraft.client.HotbarManager;
+import com.example.flintlock.setup.item.FlintlockItem;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.gui.ForgeIngameGui;
-import net.minecraftforge.client.gui.GuiUtils;
-import net.minecraftforge.client.gui.IIngameOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
-
-import java.lang.reflect.Field;
 
 import static net.minecraft.world.InteractionHand.MAIN_HAND;
 import static net.minecraft.world.InteractionHand.OFF_HAND;
-import static net.minecraftforge.client.gui.ForgeIngameGui.HOTBAR_ELEMENT;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT)
 public class GUIHandler {

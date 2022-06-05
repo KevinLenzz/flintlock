@@ -1,4 +1,4 @@
-package com.example.flintlock.setup.ItemPro;
+package com.example.flintlock.setup.item;
 
 import com.example.flintlock.setup.ModSetup;
 import net.minecraft.world.item.Item;

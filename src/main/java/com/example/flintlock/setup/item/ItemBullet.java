@@ -1,8 +1,7 @@
-package com.example.flintlock.setup.ItemPro;
+package com.example.flintlock.setup.item;
 
 import com.example.flintlock.setup.ModSetup;
 import com.example.flintlock.setup.entity.EntityBullet;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
