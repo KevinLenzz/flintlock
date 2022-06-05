@@ -10,6 +10,7 @@ import net.minecraft.client.model.AnimationUtils;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.RemotePlayer;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -23,6 +24,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 
+import java.lang.reflect.Field;
 import java.util.function.Predicate;
 
 import static com.example.flintlock.setup.Registration.*;
@@ -57,7 +59,7 @@ public class FlintlockItem extends CrossbowItem{
 
     public void releaseUsing(ItemStack p_77615_1_, Level level, LivingEntity livingEntity, int p_77615_4_) {
         if (livingEntity instanceof Player) {
-            Items.CROSSBOW=this;
+            Items.CROSSBOW=livingEntity.getItemInHand(livingEntity.getUsedItemHand()).getItem();
             Player player = (Player)livingEntity;
             boolean flag = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, p_77615_1_) > 0;
             ItemStack itemstack = this.findAmmo(player);
@@ -178,6 +180,8 @@ public class FlintlockItem extends CrossbowItem{
         SoundSource soundsource = playerIn instanceof Player ? SoundSource.PLAYERS : SoundSource.HOSTILE;
         level.playSound((Player) null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), TRIGGERSOUND.get(), soundsource, 1.0F, 1.0F / (level.getRandom().nextFloat() * 0.5F + 1.0F) + 0.2F);
         ItemStack itemstack = playerIn.getItemInHand(handIn);
+        CompoundTag compoundtag = playerIn.getMainHandItem().getOrCreateTag();
+        compoundtag.putBoolean("Charged", true);
         boolean flag3 = !this.findAmmo(playerIn).isEmpty();
         InteractionResultHolder<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, level, playerIn, handIn, flag3);
         if (ret != null) return ret;

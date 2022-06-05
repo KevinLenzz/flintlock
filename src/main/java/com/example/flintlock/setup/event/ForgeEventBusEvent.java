@@ -37,7 +37,7 @@ public class ForgeEventBusEvent {
         if (KEYG.isDown()) {
             assert Minecraft.getInstance().player != null;
 //            Minecraft.getInstance().player.sendMessage(new TextComponent("You Press k"),Minecraft.getInstance().player.getUUID());
-            Item theItemInHand=Minecraft.getInstance().player.getItemInHand(InteractionHand.MAIN_HAND).getItem();
+            Item theItemInHand=Minecraft.getInstance().player.getItemInHand(Minecraft.getInstance().player.getUsedItemHand()).getItem();
             if(theItemInHand instanceof FlintlockItem){
                 if(timer==0){
                     startTimer=true;
