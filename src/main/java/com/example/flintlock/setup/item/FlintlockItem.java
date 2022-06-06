@@ -69,6 +69,7 @@ public class FlintlockItem extends CrossbowItem{
 
     public void releaseUsing(ItemStack p_77615_1_, Level level, LivingEntity livingEntity, int p_77615_4_) {
         if (livingEntity instanceof Player) {
+            setCharged(p_77615_1_,true);
             Player player = (Player)livingEntity;
             boolean flag1 = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, p_77615_1_) > 0;
             ItemStack itemstack = this.findAmmo(player);
