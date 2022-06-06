@@ -52,6 +52,9 @@ public class ForgeEventBusEvent {
     public static void ClientTickEvent(TickEvent.ClientTickEvent event){
         if(startTimer){
             timer++;
+            if(timer%20==0){
+                Minecraft.getInstance().player.sendMessage(new TextComponent(timer+"%"),Minecraft.getInstance().player.getUUID());
+            }
         }else if(timer!=0){
             timer=0;
         }
