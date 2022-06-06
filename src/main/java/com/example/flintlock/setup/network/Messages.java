@@ -37,6 +37,11 @@ public class Messages {
                 .encoder(PGM2::toBytes)
                 .consumer(PGM2::handle)
                 .add();
+        net.messageBuilder(PGM.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PGM::new)
+                .encoder(PGM::toBytes)
+                .consumer(PGM::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {
@@ -44,6 +49,6 @@ public class Messages {
     }
 
     public static <MSG> void sendToPlayer(MSG message, ServerPlayer player) {
-        INSTANCE.send(PacketDistributor.PLAYER.with(() -> {return player;}), message);
+        INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
     }
 }

@@ -5,6 +5,7 @@ import com.example.flintlock.setup.Registration;
 import com.example.flintlock.setup.entity.EntityBullet;
 import com.example.flintlock.setup.event.Flags;
 import com.example.flintlock.setup.network.Messages;
+import com.example.flintlock.setup.network.PGM;
 import com.example.flintlock.setup.network.PGM2;
 import net.minecraft.client.model.AnimationUtils;
 import net.minecraft.client.model.HumanoidModel;
@@ -24,6 +25,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import org.apache.logging.log4j.core.jmx.Server;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -139,7 +141,12 @@ public class FlintlockItem extends CrossbowItem{
                     }
                 }
                 if((level instanceof ServerLevel serverWorld)&&shoot){
-                    Items.CROSSBOW=player.getItemInHand(player.getUsedItemHand()).getItem();
+                    System.out.println(serverWorld.players());
+//                    Items.CROSSBOW=player.getItemInHand(player.getUsedItemHand()).getItem();
+                    ItemStack theItem=livingEntity.getItemInHand(livingEntity.getUsedItemHand());
+                    for(ServerPlayer serverPlayer:serverWorld.players()) {
+                        Messages.sendToPlayer(new PGM(theItem),serverPlayer);
+                    }
                     serverWorld.sendParticles(ParticleTypes.FLAME,
                             livingEntity.getX() + Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) *0.5d,
                             livingEntity.getY() - Math.sin(livingEntity.getViewXRot(0) * Math.PI / 180) * 0.5d + 1.6d,
