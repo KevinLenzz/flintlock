@@ -94,9 +94,6 @@ public class FlintlockItem extends CrossbowItem{
                         itemstack = new ItemStack(Registration.ITEM_BULLET.get());
                     }
 //                    if (!((double) f < 1D)) {
-                        if(number>1){
-                            Messages.sendToServer(new PGM2());
-                        }
 //                        setCharged(p_77615_1_, true);
                         boolean flag2 = player.getAbilities().instabuild || (itemstack.getItem() instanceof ItemBullet && ((ItemBullet) itemstack.getItem()).isInfinite(itemstack, p_77615_1_, player));
 //                        System.out.println(11111);
@@ -134,6 +131,7 @@ public class FlintlockItem extends CrossbowItem{
                                 reloadflag = false;
                                 number = numberOringin;
                             } else if (number > 1) {
+                                Messages.sendToServer(new PGM2());
                                 number--;
                             }
                         }
