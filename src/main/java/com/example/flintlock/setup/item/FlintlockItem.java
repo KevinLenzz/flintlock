@@ -80,7 +80,7 @@ public class FlintlockItem extends CrossbowItem{
             if(a<0)return;
             if (!itemstack.isEmpty() || flag) {
                 float f = getPowerForTime(a);
-                if(Flags.flag&&reloadflag) {
+                if(level.isClientSide()&&Flags.flag&&reloadflag) {
                     if (itemstack.isEmpty()) {
                         itemstack = new ItemStack(Registration.ITEM_BULLET.get());
                     }

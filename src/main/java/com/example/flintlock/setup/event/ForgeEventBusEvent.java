@@ -9,6 +9,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.TickEvent;
@@ -19,7 +20,7 @@ import static com.example.flintlock.setup.ClientSetup.KEYG;
 import static com.example.flintlock.setup.ClientSetup.KEYR;
 import static com.example.flintlock.setup.event.Flags.*;
 
-@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.FORGE,value= Dist.CLIENT)
 public class ForgeEventBusEvent {
     public static int timer=0;
     @SubscribeEvent

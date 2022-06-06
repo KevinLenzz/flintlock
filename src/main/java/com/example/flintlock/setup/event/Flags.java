@@ -1,5 +1,9 @@
 package com.example.flintlock.setup.event;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+@OnlyIn(Dist.CLIENT)
 public class Flags {
     public static boolean startTimer=false;
 
