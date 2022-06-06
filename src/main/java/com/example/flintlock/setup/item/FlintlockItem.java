@@ -91,7 +91,7 @@ public class FlintlockItem extends CrossbowItem{
                         if(number>1){
                             Messages.sendToServer(new PGM2());
                         }
-                        setCharged(p_77615_1_, true);
+//                        setCharged(p_77615_1_, true);
                         boolean flag1 = player.getAbilities().instabuild || (itemstack.getItem() instanceof ItemBullet && ((ItemBullet) itemstack.getItem()).isInfinite(itemstack, p_77615_1_, player));
 //                        System.out.println(11111);
 //                        level.addParticle(ParticleTypes.FLAME,
@@ -190,7 +190,7 @@ public class FlintlockItem extends CrossbowItem{
         level.playSound((Player) null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), TRIGGERSOUND.get(), soundsource, 1.0F, 1.0F / (level.getRandom().nextFloat() * 0.5F + 1.0F) + 0.2F);
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         CompoundTag compoundtag = playerIn.getMainHandItem().getOrCreateTag();
-        compoundtag.putBoolean("Charged", true);
+//        compoundtag.putBoolean("Charged", true);
         boolean flag3 = !this.findAmmo(playerIn).isEmpty();
         InteractionResultHolder<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, level, playerIn, handIn, flag3);
         if (ret != null) return ret;
