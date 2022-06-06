@@ -42,6 +42,11 @@ public class Messages {
                 .encoder(PGM::toBytes)
                 .consumer(PGM::handle)
                 .add();
+        net.messageBuilder(PGM3.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PGM3::new)
+                .encoder(PGM3::toBytes)
+                .consumer(PGM3::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {

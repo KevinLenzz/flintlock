@@ -9,7 +9,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class Flags {
     public static boolean startTimer=false;
 
-    public static boolean flag=false;
-    public static boolean reloadflag=false;
+//    public static boolean flag=false;
+//    public static boolean reloadflag=false;
     public static boolean sent=false;
 }

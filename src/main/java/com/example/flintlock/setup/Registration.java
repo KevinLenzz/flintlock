@@ -37,11 +37,11 @@ public class Registration {
     public static final RegistryObject<SimpleParticleType> SMOKE_PARTICLE=PARTICLE_TYPES.register("smoke_particle",()->new SimpleParticleType(true));
 
     public static final RegistryObject<Item> PISTOLITEM = ITEMS.register("pistol",()->new FlintlockItem(6,100,1));
-    public static final RegistryObject<Item> FLINT_MUSKETITEM = ITEMS.register("flint_musket",()->new FlintlockItem(6,200,1));
-    public static final RegistryObject<Item> OFFICERS_PISTOL = ITEMS.register("officers_pistol",()->new FlintlockItem(6,100,2));
-    public static final RegistryObject<Item> SILVER_PLATED_PISTOL = ITEMS.register("silver_plated_pistol",()->new FlintlockItem(6,100,1));
-    public static final RegistryObject<Item> AMERICAN_FLINTLOCK = ITEMS.register("american_flintlock",()->new FlintlockItem(6,100,4));
-    public static final RegistryObject<Item> FRENCH_CAVALRY_PISTOL = ITEMS.register("french_cavalry_pistol",()->new FlintlockItem(6,100,1));
+    public static final RegistryObject<Item> FLINT_MUSKETITEM = ITEMS.register("flint_musket",()->new FlintlockItem(12,200,1));
+    public static final RegistryObject<Item> OFFICERS_PISTOL = ITEMS.register("officers_pistol",()->new FlintlockItem(6,200,2));
+    public static final RegistryObject<Item> SILVER_PLATED_PISTOL = ITEMS.register("silver_plated_pistol",()->new FlintlockItem(8,100,1));
+    public static final RegistryObject<Item> AMERICAN_FLINTLOCK = ITEMS.register("american_flintlock",()->new FlintlockItem(6,400,4));
+    public static final RegistryObject<Item> FRENCH_CAVALRY_PISTOL = ITEMS.register("french_cavalry_pistol",()->new FlintlockItem(10,100,1));
     public static final RegistryObject<Item> EAGLE_OF_SUGER = ITEMS.register("eagle_of_suger", ()->new EagleOfSuger());
     public static final RegistryObject<Item> COIN_WITH_FILE = ITEMS.register("coin_with_file",()->new CoinWithFile());
     public static final RegistryObject<Item> DIETY_BUTTER_BREAD = ITEMS.register("dirty_butter_bread",()->new DirtyButterBread());

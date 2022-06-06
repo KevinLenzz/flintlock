@@ -26,49 +26,56 @@ public class ForgeEventBusEvent {
     public static int timer=0;
     @SubscribeEvent
     public static void onKeyboardInput(InputEvent.KeyInputEvent event) {
-        if (KEYR.isDown()&&startTimer==false) {
-            assert Minecraft.getInstance().player != null;
+        Item theItemInHand = Minecraft.getInstance().player.getItemInHand(Minecraft.getInstance().player.getUsedItemHand()).getItem();
+        if (theItemInHand instanceof FlintlockItem theFlintlock) {
+            if (KEYR.isDown() && startTimer == false) {
+                assert Minecraft.getInstance().player != null;
 //            Minecraft.getInstance().player.sendMessage(new TextComponent("You Press k"),Minecraft.getInstance().player.getUUID());
-            if(flag){
-                flag=false;
+                if (theFlintlock.flag) {
+                    theFlintlock.flag = false;
+                } else {
+                    theFlintlock.flag = true;
+                }
             }
-            else {
-                flag=true;
-            }
-        }
-        if (KEYG.isDown()) {
-            assert Minecraft.getInstance().player != null;
+            if (KEYG.isDown()) {
+                assert Minecraft.getInstance().player != null;
 //            Minecraft.getInstance().player.sendMessage(new TextComponent("You Press k"),Minecraft.getInstance().player.getUUID());
-            Item theItemInHand=Minecraft.getInstance().player.getItemInHand(Minecraft.getInstance().player.getUsedItemHand()).getItem();
-            if(theItemInHand instanceof FlintlockItem){
-                if(timer==0){
-                    startTimer=true;
-                    flag=false;
+                if (timer == 0) {
+                    startTimer = true;
+                    theFlintlock.flag = false;
                 }
             }
         }
     }
     @SubscribeEvent
-    public static void ClientTickEvent(TickEvent.ClientTickEvent event){
-        if(startTimer){
-            timer++;
-            if(timer%20==0){
-                Minecraft.getInstance().player.sendMessage(new TextComponent(timer+"%"),Minecraft.getInstance().player.getUUID());
+    public static void PlayerTickEvent(TickEvent.PlayerTickEvent event) {
+        if (Minecraft.getInstance().player!=null&&Minecraft.getInstance().player.getItemInHand(Minecraft.getInstance().player.getUsedItemHand()).getItem()!=null) {
+            Item theItemInHand = Minecraft.getInstance().player.getItemInHand(Minecraft.getInstance().player.getUsedItemHand()).getItem();
+            if (theItemInHand instanceof FlintlockItem theFlintlock) {
+                if (startTimer) {
+                    timer++;
+                    if (timer % 20 == 0) {
+                        Minecraft.getInstance().player.sendMessage(new TextComponent(timer * 100 / theFlintlock.duraTag + "%"), Minecraft.getInstance().player.getUUID());
+                    }
+                } else if (timer != 0) {
+                    timer = 0;
+                }
+                if (timer >= theFlintlock.duraTag) {
+                    startTimer = false;
+                    theFlintlock.reloadflag = true;
+                    Minecraft.getInstance().player.sendMessage(new TextComponent("reloaded"), Minecraft.getInstance().player.getUUID());
+                }
+                if (theFlintlock.flag && theFlintlock.reloadflag && !sent) {
+                    Messages.sendToServer(new PGM2());
+                    sent = true;
+                }
+                if (!theFlintlock.reloadflag) {
+                    sent = false;
+                }
+            } else {
+                startTimer = false;
+                timer = 0;
             }
-        }else if(timer!=0){
-            timer=0;
-        }
-        if(timer>= FlintlockItem.duraTag){
-            startTimer=false;
-            reloadflag=true;
-            Minecraft.getInstance().player.sendMessage(new TextComponent("reloaded"),Minecraft.getInstance().player.getUUID());
-        }
-        if(flag&&reloadflag&&!sent){
-            Messages.sendToServer(new PGM2());
-            sent=true;
-        }
-        if(!reloadflag){
-            sent=false;
         }
     }
 }

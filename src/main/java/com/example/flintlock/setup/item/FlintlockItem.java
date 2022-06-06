@@ -4,9 +4,11 @@ import com.example.flintlock.setup.ModSetup;
 import com.example.flintlock.setup.Registration;
 import com.example.flintlock.setup.entity.EntityBullet;
 import com.example.flintlock.setup.event.Flags;
+import com.example.flintlock.setup.event.Flags2;
 import com.example.flintlock.setup.network.Messages;
 import com.example.flintlock.setup.network.PGM;
 import com.example.flintlock.setup.network.PGM2;
+import com.example.flintlock.setup.network.PGM3;
 import net.minecraft.client.model.AnimationUtils;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.RemotePlayer;
@@ -32,7 +34,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static com.example.flintlock.setup.Registration.*;
-import static com.example.flintlock.setup.event.Flags.reloadflag;
+//import static com.example.flintlock.setup.event.Flags.reloadflag;
 import static com.example.flintlock.setup.event.Flags2.shoot;
 
 public class FlintlockItem extends CrossbowItem{
@@ -41,15 +43,19 @@ public class FlintlockItem extends CrossbowItem{
     }
     public boolean reload=false;
     public double damageTag;
-    public static int duraTag;
+    public int duraTag;
     public int number;
     public int numberOringin;
+    public boolean reloadflag;
+    public boolean flag;
     public FlintlockItem(double damageTag,int duraTag,int number) {
         super(new FlintlockItem.Properties().tab(ModSetup.ITEM_GROUP).stacksTo(1));
         this.damageTag=damageTag;
         this.duraTag=duraTag;
         this.number=number;
         this.numberOringin=number;
+        reloadflag=false;
+        flag=false;
     }
 
     public void onUseTick(Level p_40910_, LivingEntity p_40911_, ItemStack p_40912_, int p_40913_) {
@@ -64,10 +70,10 @@ public class FlintlockItem extends CrossbowItem{
     public void releaseUsing(ItemStack p_77615_1_, Level level, LivingEntity livingEntity, int p_77615_4_) {
         if (livingEntity instanceof Player) {
             Player player = (Player)livingEntity;
-            boolean flag = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, p_77615_1_) > 0;
+            boolean flag1 = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, p_77615_1_) > 0;
             ItemStack itemstack = this.findAmmo(player);
             int a = this.getUseDuration(p_77615_1_) - p_77615_4_;
-            a = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(p_77615_1_, level, player, a, !itemstack.isEmpty() || flag);
+            a = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(p_77615_1_, level, player, a, !itemstack.isEmpty() || flag1);
 //            float f = getPowerForTime(a);
 //            ItemBullet arrowitem = (ItemBullet) (itemstack.getItem() instanceof ItemBullet ? itemstack.getItem() : Registration.ITEM_BULLET.get());
 //            EntityBullet abstractarrowentity;
@@ -81,18 +87,18 @@ public class FlintlockItem extends CrossbowItem{
 //                p_220009_1_.broadcastBreakEvent(livingEntity.getUsedItemHand());
 //            });
             if(a<0)return;
-            if (!itemstack.isEmpty() || flag) {
-                float f = getPowerForTime(a);
-                if(level.isClientSide()&&Flags.flag&&reloadflag) {
+            if (!itemstack.isEmpty() || flag1) {
+//                float f = getPowerForTime(a);
+                if(level.isClientSide()&&flag&&reloadflag) {
                     if (itemstack.isEmpty()) {
                         itemstack = new ItemStack(Registration.ITEM_BULLET.get());
                     }
-                    if (!((double) f < 1D)) {
+//                    if (!((double) f < 1D)) {
                         if(number>1){
                             Messages.sendToServer(new PGM2());
                         }
 //                        setCharged(p_77615_1_, true);
-                        boolean flag1 = player.getAbilities().instabuild || (itemstack.getItem() instanceof ItemBullet && ((ItemBullet) itemstack.getItem()).isInfinite(itemstack, p_77615_1_, player));
+                        boolean flag2 = player.getAbilities().instabuild || (itemstack.getItem() instanceof ItemBullet && ((ItemBullet) itemstack.getItem()).isInfinite(itemstack, p_77615_1_, player));
 //                        System.out.println(11111);
 //                        level.addParticle(ParticleTypes.FLAME,
 //                                livingEntity.getX() + Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) *0.5d,
@@ -131,17 +137,17 @@ public class FlintlockItem extends CrossbowItem{
                                 number--;
                             }
                         }
-                        if (!flag1 && !player.getAbilities().instabuild) {
+                        if (!flag2 && !player.getAbilities().instabuild) {
                             itemstack.shrink(1);
                             if (itemstack.isEmpty()) {
                                 player.getInventory().removeItem(itemstack);
                             }
                         }
                         player.awardStat(Stats.ITEM_USED.get(this));
-                    }
+//                    }
                 }
                 if((level instanceof ServerLevel serverWorld)&&shoot){
-                    System.out.println(serverWorld.players());
+//                    System.out.println(serverWorld.players());
 //                    Items.CROSSBOW=player.getItemInHand(player.getUsedItemHand()).getItem();
                     ItemStack theItem=livingEntity.getItemInHand(livingEntity.getUsedItemHand());
                     for(ServerPlayer serverPlayer:serverWorld.players()) {
@@ -168,15 +174,15 @@ public class FlintlockItem extends CrossbowItem{
                                 0);
                     }
                     SoundSource soundsource = livingEntity instanceof Player ? SoundSource.PLAYERS : SoundSource.HOSTILE;
-                    level.playSound((Player) null,livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), SHOOT.get(), soundsource, 1.4F, 1.4F / (livingEntity.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    level.playSound((Player) null,livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), SHOOT.get(), soundsource, 1.4F, 1.4F / (livingEntity.getRandom().nextFloat() * 0.4F + 1.2F) + 0.5F);
                     ItemBullet arrowitem = (ItemBullet) (itemstack.getItem() instanceof ItemBullet ? itemstack.getItem() : Registration.ITEM_BULLET.get());
                     EntityBullet abstractarrowentity;
                     abstractarrowentity = arrowitem.createArrow(level, itemstack, livingEntity,damageTag);
                     abstractarrowentity = customArrow(abstractarrowentity);
-                    abstractarrowentity.shootFromRotation(livingEntity, livingEntity.getXRot(), livingEntity.getYRot(), 0.2F, f * 30.0F, 0.75F);
+                    abstractarrowentity.shootFromRotation(livingEntity, livingEntity.getXRot(), livingEntity.getYRot(), 0.2F,  30.0F, 0.75F);
                     p_77615_1_.hurtAndBreak(1, livingEntity, (p_220009_1_) -> {p_220009_1_.broadcastBreakEvent(livingEntity.getUsedItemHand());});
                     level.addFreshEntity(abstractarrowentity);
-                    abstractarrowentity.shootFromRotation(livingEntity, livingEntity.getXRot(), livingEntity.getYRot(), 0.2F, f * 30.0F, 0.75F);
+                    abstractarrowentity.shootFromRotation(livingEntity, livingEntity.getXRot(), livingEntity.getYRot(), 0.2F,  30.0F, 0.75F);
                     p_77615_1_.hurtAndBreak(1, livingEntity, (p_220009_1_) -> {
                         p_220009_1_.broadcastBreakEvent(livingEntity.getUsedItemHand());
                     });
