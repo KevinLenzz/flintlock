@@ -68,7 +68,7 @@ public class AimGUI extends GuiComponent {
                 }
             }
         } else if (Minecraft.getInstance().player.getItemInHand(InteractionHand.OFF_HAND).getItem() == Registration.PISTOLITEM.get()) {
-            if(theItemM instanceof FlintlockItem theFlintlock) {
+            if(theItemO instanceof FlintlockItem theFlintlock) {
                 if (theFlintlock.flag) {
                     RenderSystem.setShaderTexture(0, ui[0]);
                 } else {
@@ -85,7 +85,7 @@ public class AimGUI extends GuiComponent {
                 }
             }
         } else if (Minecraft.getInstance().player.getItemInHand(InteractionHand.OFF_HAND).getItem() == Registration.FLINT_MUSKETITEM.get()) {
-            if(theItemM instanceof FlintlockItem theFlintlock) {
+            if(theItemO instanceof FlintlockItem theFlintlock) {
                 if (theFlintlock.flag) {
                     RenderSystem.setShaderTexture(0, ui[1]);
                 } else {
@@ -102,7 +102,7 @@ public class AimGUI extends GuiComponent {
                 }
             }
         } else if (Minecraft.getInstance().player.getItemInHand(InteractionHand.OFF_HAND).getItem() == Registration.OFFICERS_PISTOL.get()) {
-            if(theItemM instanceof FlintlockItem theFlintlock) {
+            if(theItemO instanceof FlintlockItem theFlintlock) {
                 if (theFlintlock.flag) {
                     RenderSystem.setShaderTexture(0, ui[2]);
                 } else {
@@ -119,7 +119,7 @@ public class AimGUI extends GuiComponent {
                 }
             }
         } else if (Minecraft.getInstance().player.getItemInHand(InteractionHand.OFF_HAND).getItem() == Registration.SILVER_PLATED_PISTOL.get()) {
-            if(theItemM instanceof FlintlockItem theFlintlock) {
+            if(theItemO instanceof FlintlockItem theFlintlock) {
                 if (theFlintlock.flag) {
                     RenderSystem.setShaderTexture(0, ui[3]);
                 } else {
@@ -136,7 +136,7 @@ public class AimGUI extends GuiComponent {
                 }
             }
         } else if (Minecraft.getInstance().player.getItemInHand(InteractionHand.OFF_HAND).getItem() == Registration.AMERICAN_FLINTLOCK.get()) {
-            if(theItemM instanceof FlintlockItem theFlintlock) {
+            if(theItemO instanceof FlintlockItem theFlintlock) {
                 if (theFlintlock.flag) {
                     RenderSystem.setShaderTexture(0, ui[4]);
                 } else {
@@ -153,7 +153,7 @@ public class AimGUI extends GuiComponent {
                 }
             }
         } else if (Minecraft.getInstance().player.getItemInHand(InteractionHand.OFF_HAND).getItem() == Registration.FRENCH_CAVALRY_PISTOL.get()) {
-            if(theItemM instanceof FlintlockItem theFlintlock) {
+            if(theItemO instanceof FlintlockItem theFlintlock) {
                 if (theFlintlock.flag) {
                     RenderSystem.setShaderTexture(0, ui[5]);
                 } else {

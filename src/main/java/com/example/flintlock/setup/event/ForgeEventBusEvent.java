@@ -11,6 +11,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.TickEvent;
@@ -26,23 +27,25 @@ public class ForgeEventBusEvent {
     public static int timer=0;
     @SubscribeEvent
     public static void onKeyboardInput(InputEvent.KeyInputEvent event) {
-        Item theItemInHand = Minecraft.getInstance().player.getItemInHand(Minecraft.getInstance().player.getUsedItemHand()).getItem();
-        if (theItemInHand instanceof FlintlockItem theFlintlock) {
-            if (KEYR.isDown() && startTimer == false) {
-                assert Minecraft.getInstance().player != null;
+        if(Minecraft.getInstance().player!=null) {
+            Item theItemInHand = Minecraft.getInstance().player.getItemInHand(Minecraft.getInstance().player.getUsedItemHand()).getItem();
+            if (theItemInHand instanceof FlintlockItem theFlintlock) {
+                if (KEYR.isDown() && startTimer == false) {
+                    assert Minecraft.getInstance().player != null;
 //            Minecraft.getInstance().player.sendMessage(new TextComponent("You Press k"),Minecraft.getInstance().player.getUUID());
-                if (theFlintlock.flag) {
-                    theFlintlock.flag = false;
-                } else {
-                    theFlintlock.flag = true;
+                    if (theFlintlock.flag) {
+                        theFlintlock.flag = false;
+                    } else {
+                        theFlintlock.flag = true;
+                    }
                 }
-            }
-            if (KEYG.isDown()) {
-                assert Minecraft.getInstance().player != null;
+                if (KEYG.isDown()) {
+                    assert Minecraft.getInstance().player != null;
 //            Minecraft.getInstance().player.sendMessage(new TextComponent("You Press k"),Minecraft.getInstance().player.getUUID());
-                if (timer == 0) {
-                    startTimer = true;
-                    theFlintlock.flag = false;
+                    if (timer == 0) {
+                        startTimer = true;
+                        theFlintlock.flag = false;
+                    }
                 }
             }
         }
