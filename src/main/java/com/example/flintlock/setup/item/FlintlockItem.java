@@ -12,6 +12,7 @@ import net.minecraft.client.player.RemotePlayer;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -25,11 +26,12 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 
 import java.lang.reflect.Field;
+import java.util.List;
 import java.util.function.Predicate;
 
 import static com.example.flintlock.setup.Registration.*;
 import static com.example.flintlock.setup.event.Flags.reloadflag;
-import static com.example.flintlock.setup.event.Flags.shoot;
+import static com.example.flintlock.setup.event.Flags2.shoot;
 
 public class FlintlockItem extends CrossbowItem{
     public UseAnim getUseAnimation(ItemStack p_40935_) {
@@ -59,7 +61,6 @@ public class FlintlockItem extends CrossbowItem{
 
     public void releaseUsing(ItemStack p_77615_1_, Level level, LivingEntity livingEntity, int p_77615_4_) {
         if (livingEntity instanceof Player) {
-            Items.CROSSBOW=livingEntity.getItemInHand(livingEntity.getUsedItemHand()).getItem();
             Player player = (Player)livingEntity;
             boolean flag = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, p_77615_1_) > 0;
             ItemStack itemstack = this.findAmmo(player);
@@ -138,6 +139,7 @@ public class FlintlockItem extends CrossbowItem{
                     }
                 }
                 if((level instanceof ServerLevel serverWorld)&&shoot){
+                    Items.CROSSBOW=player.getItemInHand(player.getUsedItemHand()).getItem();
                     serverWorld.sendParticles(ParticleTypes.FLAME,
                             livingEntity.getX() + Math.cos(livingEntity.getViewYRot(0) * Math.PI / 180 + Math.PI / 2) *0.5d,
                             livingEntity.getY() - Math.sin(livingEntity.getViewXRot(0) * Math.PI / 180) * 0.5d + 1.6d,
@@ -172,7 +174,7 @@ public class FlintlockItem extends CrossbowItem{
                         p_220009_1_.broadcastBreakEvent(livingEntity.getUsedItemHand());
                     });
                     shoot = false;
-                };
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.example.flintlock.setup.network;
 
 import com.example.flintlock.setup.event.Flags;
+import com.example.flintlock.setup.event.Flags2;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -22,7 +23,7 @@ public class PGM2 {
         NetworkEvent.Context ctx = supplier.get();
         ctx.enqueueWork(() -> {
             // Here we are server side
-            Flags.shoot=true;
+            Flags2.shoot=true;
         });
         ctx.setPacketHandled(true);
         return true;

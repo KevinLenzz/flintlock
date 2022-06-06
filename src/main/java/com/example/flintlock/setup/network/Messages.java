@@ -44,6 +44,6 @@ public class Messages {
     }
 
     public static <MSG> void sendToPlayer(MSG message, ServerPlayer player) {
-        INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
+        INSTANCE.send(PacketDistributor.PLAYER.with(() -> {return player;}), message);
     }
 }
