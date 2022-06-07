@@ -37,7 +37,7 @@ public class Messages {
                 .encoder(PGM2::toBytes)
                 .consumer(PGM2::handle)
                 .add();
-        net.messageBuilder(PGM.class, id(), NetworkDirection.LOGIN_TO_CLIENT)
+        net.messageBuilder(PGM.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PGM::new)
                 .encoder(PGM::toBytes)
                 .consumer(PGM::handle)
