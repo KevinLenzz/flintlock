@@ -12,12 +12,6 @@ public class Messages {
 
     private static SimpleChannel INSTANCE;
 
-    // Every packet needs a unique ID (unique for this channel)
-    private static int packetId = 0;
-    private static int id() {
-        return packetId++;
-    }
-
     public static void register() {
         // Make the channel. If needed you can do version checking here
         SimpleChannel net = NetworkRegistry.ChannelBuilder
@@ -32,17 +26,17 @@ public class Messages {
         // Register all our packets. We only have one right now. The new message has a unique ID, an indication
         // of how it is going to be used (from client to server) and ways to encode and decode it. Finally 'handle'
         // will actually execute when the packet is received
-        net.messageBuilder(PGM2.class, id(), NetworkDirection.PLAY_TO_SERVER)
+        net.messageBuilder(PGM2.class, 2, NetworkDirection.PLAY_TO_SERVER)
                 .decoder(PGM2::new)
                 .encoder(PGM2::toBytes)
                 .consumer(PGM2::handle)
                 .add();
-        net.messageBuilder(PGM.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+        net.messageBuilder(PGM.class, 1, NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PGM::new)
                 .encoder(PGM::toBytes)
                 .consumer(PGM::handle)
                 .add();
-        net.messageBuilder(PGM3.class, id(), NetworkDirection.PLAY_TO_SERVER)
+        net.messageBuilder(PGM3.class,3, NetworkDirection.PLAY_TO_SERVER)
                 .decoder(PGM3::new)
                 .encoder(PGM3::toBytes)
                 .consumer(PGM3::handle)
