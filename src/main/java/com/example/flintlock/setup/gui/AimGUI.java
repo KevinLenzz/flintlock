@@ -150,6 +150,7 @@ public class AimGUI extends GuiComponent {
                     RenderSystem.setShaderTexture(0, ui[5]);
                 } else {
                     RenderSystem.setShaderTexture(0, r[5]);
+
                 }
             }
         } else if (Minecraft.getInstance().player.getItemInHand(InteractionHand.OFF_HAND).getItem() == Registration.FRENCH_CAVALRY_PISTOL.get()) {
@@ -162,6 +163,16 @@ public class AimGUI extends GuiComponent {
             }
         }
         this.blit(poseStack, 0, 0,0, 0, 0, screenWidth, screenHeight,screenWidth,screenHeight);
+//        drawString(poseStack,minecraft.font, "剩余弹药:" ,width*1 / 4,(height*9 / 10) - 4,Integer.parseInt("FFAA00", 16));
+        if(theItemO instanceof FlintlockItem theFlintlock) {
+            if(theFlintlock.reloadflag) {
+                drawString(poseStack, minecraft.font, "枪内弹药:" + theFlintlock.number, width / 3, height + 20, Integer.parseInt("1E90FF", 16));
+            }
+        }else if(theItemM instanceof FlintlockItem theFlintlock){
+            if(theFlintlock.reloadflag) {
+                drawString(poseStack, minecraft.font, "枪内弹药:" + theFlintlock.number, width / 3, height+ 20, Integer.parseInt("1E90FF", 16));
+            }
+        }
         //坐标x 坐标y 坐标z(无用) 图片x 图片y 图片在屏幕上渲染到的x 图片在屏幕上渲染到的y 缩放width 缩放height
     }
 }

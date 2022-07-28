@@ -15,6 +15,7 @@ import static net.minecraft.world.InteractionHand.OFF_HAND;
 public class GUIHandler {
     public static boolean flag2=true;
     private final static AimGUI AIM_GUI = new AimGUI();
+    private final static ReloadHUD R_HUD = new ReloadHUD();
     @SubscribeEvent(receiveCanceled = true)
     public static void onRenderGameOverlayEvent(RenderGameOverlayEvent.Post event) throws IllegalAccessException {
 //        if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
@@ -33,6 +34,7 @@ public class GUIHandler {
             if (playerEntity != null &&mc.options.getCameraType().isFirstPerson()) {
                 mc.gameRenderer.setRenderHand(false);
                 AIM_GUI.render(event.getMatrixStack(),screenWidth,screenHeight);
+                R_HUD.render(event.getMatrixStack(),screenWidth,screenHeight);
             }
         }
     }

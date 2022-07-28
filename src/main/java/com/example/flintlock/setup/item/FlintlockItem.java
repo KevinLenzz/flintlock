@@ -5,6 +5,7 @@ import com.example.flintlock.setup.Registration;
 import com.example.flintlock.setup.entity.EntityBullet;
 import com.example.flintlock.setup.event.Flags;
 import com.example.flintlock.setup.event.Flags2;
+import com.example.flintlock.setup.event.ForgeEventBusEvent;
 import com.example.flintlock.setup.network.Messages;
 import com.example.flintlock.setup.network.PGM;
 import com.example.flintlock.setup.network.PGM2;
@@ -129,6 +130,7 @@ public class FlintlockItem extends CrossbowItem{
 //                        level.playLocalSound(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), SHOOT.get(), SoundSource.PLAYERS, 1.4F, 1.4F / (livingEntity.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F,false);
                         if(level.isClientSide()) {
                             if (number == 1) {
+                                ForgeEventBusEvent.uinum=-1;
                                 reloadflag = false;
                                 number = numberOringin;
                             } else if (number > 1) {
